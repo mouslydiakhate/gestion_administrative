@@ -5,6 +5,8 @@ import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Users, FileText, Shield, Settings, BarChart3, UserCheck, AlertTriangle } from "lucide-react";
 import Navbar from "@/components/Navbar";
+import AgentManagement from "@/components/AgentManagement";
+import ChefQuartierManagement from "@/components/ChefQuartierManagement";
 
 const AdminDashboard = () => {
   return (
@@ -70,9 +72,10 @@ const AdminDashboard = () => {
         </div>
 
         <Tabs defaultValue="users" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-4">
+          <TabsList className="grid w-full grid-cols-5">
             <TabsTrigger value="users">Utilisateurs</TabsTrigger>
             <TabsTrigger value="agents">Agents</TabsTrigger>
+            <TabsTrigger value="chefs">Chefs Quartier</TabsTrigger>
             <TabsTrigger value="system">Système</TabsTrigger>
             <TabsTrigger value="reports">Rapports</TabsTrigger>
           </TabsList>
@@ -114,33 +117,11 @@ const AdminDashboard = () => {
           </TabsContent>
 
           <TabsContent value="agents" className="space-y-6">
-            <Card>
-              <CardHeader>
-                <CardTitle>Gestion des Agents</CardTitle>
-                <CardDescription>
-                  Superviser les agents municipaux et leurs performances
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between p-4 border rounded-lg">
-                    <div>
-                      <h3 className="font-medium">Agents Municipaux</h3>
-                      <p className="text-sm text-gray-600">45 agents actifs</p>
-                    </div>
-                    <Button>Gérer les Agents</Button>
-                  </div>
-                  
-                  <div className="flex items-center justify-between p-4 border rounded-lg">
-                    <div>
-                      <h3 className="font-medium">Chefs de Quartier</h3>
-                      <p className="text-sm text-gray-600">12 chefs de quartier</p>
-                    </div>
-                    <Button variant="outline">Superviser</Button>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+            <AgentManagement />
+          </TabsContent>
+
+          <TabsContent value="chefs" className="space-y-6">
+            <ChefQuartierManagement />
           </TabsContent>
 
           <TabsContent value="system" className="space-y-6">
