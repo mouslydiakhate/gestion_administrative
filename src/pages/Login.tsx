@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Link } from "react-router-dom";
-import { FileText, User, Shield } from "lucide-react";
+import { FileText, User, Shield, Crown, MapPin } from "lucide-react";
 import Navbar from "@/components/Navbar";
 
 const Login = () => {
@@ -22,14 +22,22 @@ const Login = () => {
           </div>
 
           <Tabs defaultValue="citizen" className="w-full">
-            <TabsList className="grid w-full grid-cols-2">
-              <TabsTrigger value="citizen" className="flex items-center space-x-2">
-                <User className="w-4 h-4" />
-                <span>Citoyen</span>
+            <TabsList className="grid w-full grid-cols-4">
+              <TabsTrigger value="citizen" className="flex items-center space-x-1">
+                <User className="w-3 h-3" />
+                <span className="text-xs">Citoyen</span>
               </TabsTrigger>
-              <TabsTrigger value="agent" className="flex items-center space-x-2">
-                <Shield className="w-4 h-4" />
-                <span>Agent</span>
+              <TabsTrigger value="agent" className="flex items-center space-x-1">
+                <Shield className="w-3 h-3" />
+                <span className="text-xs">Agent</span>
+              </TabsTrigger>
+              <TabsTrigger value="admin" className="flex items-center space-x-1">
+                <Crown className="w-3 h-3" />
+                <span className="text-xs">Admin</span>
+              </TabsTrigger>
+              <TabsTrigger value="chef" className="flex items-center space-x-1">
+                <MapPin className="w-3 h-3" />
+                <span className="text-xs">Chef</span>
               </TabsTrigger>
             </TabsList>
 
@@ -90,6 +98,64 @@ const Login = () => {
                   </Button>
                   <div className="text-center text-sm">
                     <Link to="/agent-forgot" className="text-red-600 hover:underline">
+                      Mot de passe oublié ?
+                    </Link>
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+            <TabsContent value="admin">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Espace Administrateur</CardTitle>
+                  <CardDescription>
+                    Accès réservé aux administrateurs système
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="admin-id">Identifiant administrateur</Label>
+                    <Input id="admin-id" placeholder="ADM-XXXX" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="admin-password">Mot de passe</Label>
+                    <Input id="admin-password" type="password" />
+                  </div>
+                  <Button asChild className="w-full bg-purple-600 hover:bg-purple-700">
+                    <Link to="/admin-dashboard">Se connecter</Link>
+                  </Button>
+                  <div className="text-center text-sm">
+                    <Link to="/admin-forgot" className="text-purple-600 hover:underline">
+                      Mot de passe oublié ?
+                    </Link>
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+            <TabsContent value="chef">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Espace Chef de Quartier</CardTitle>
+                  <CardDescription>
+                    Accès réservé aux chefs de quartier
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="chef-id">Identifiant chef</Label>
+                    <Input id="chef-id" placeholder="CHF-XXXX" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="chef-password">Mot de passe</Label>
+                    <Input id="chef-password" type="password" />
+                  </div>
+                  <Button asChild className="w-full bg-orange-600 hover:bg-orange-700">
+                    <Link to="/chef-dashboard">Se connecter</Link>
+                  </Button>
+                  <div className="text-center text-sm">
+                    <Link to="/chef-forgot" className="text-orange-600 hover:underline">
                       Mot de passe oublié ?
                     </Link>
                   </div>
