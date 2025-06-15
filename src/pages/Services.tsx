@@ -12,8 +12,8 @@ const Services = () => {
   const navigate = useNavigate();
 
   const handleRequestDocument = (documentId: string) => {
-    // Rediriger vers la page de connexion pour que l'utilisateur se connecte d'abord
-    navigate(`/login`);
+    // Rediriger vers la page de connexion avec l'ID du document en paramètre
+    navigate(`/login?redirect=/request/new&type=${documentId}`);
   };
 
   if (loading) {

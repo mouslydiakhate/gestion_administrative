@@ -9,18 +9,21 @@ import Footer from "@/components/Footer";
 const Index = () => {
   const services = [
     {
+      id: "1",
       title: "Extrait de naissance",
       description: "Demandez votre extrait de naissance en ligne",
       icon: FileText,
       color: "text-green-600"
     },
     {
+      id: "2", 
       title: "Casier judiciaire",
       description: "Obtenez votre bulletin de casier judiciaire",
       icon: UserCheck,
       color: "text-yellow-600"
     },
     {
+      id: "3",
       title: "Certificat de nationalité",
       description: "Demandez votre certificat de nationalité sénégalaise",
       icon: FileText,
@@ -90,7 +93,7 @@ const Index = () => {
               </CardHeader>
               <CardContent>
                 <Button asChild className="w-full">
-                  <Link to="/login">Faire une demande</Link>
+                  <Link to={`/login?redirect=/request/new&type=${service.id}`}>Faire une demande</Link>
                 </Button>
               </CardContent>
             </Card>

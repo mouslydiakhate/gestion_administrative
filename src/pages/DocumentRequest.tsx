@@ -1,6 +1,5 @@
-
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -16,6 +15,9 @@ import { toast } from "sonner";
 const DocumentRequest = () => {
   const { documentTypes, loading } = useDocumentTypes();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const preSelectedType = searchParams.get('type');
+  
   const [selectedDocumentType, setSelectedDocumentType] = useState("");
   const [formData, setFormData] = useState({
     prenom: "",
@@ -29,6 +31,16 @@ const DocumentRequest = () => {
     urgence: false
   });
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
+
+  // Pré-sélectionner le type de document si passé en paramètre
+  useEffect(() => {
+    if (preSelectedType && documentTypes.length > 0) {
+      const documentExists = documentTypes.find(doc => doc.id === preSelectedType);
+      if (documentExists) {
+        setSelectedDocumentType(preSelectedType);
+      }
+    }
+  }, [preSelectedType, documentTypes]);
 
   const selectedDocument = documentTypes.find(doc => doc.id === selectedDocumentType);
 

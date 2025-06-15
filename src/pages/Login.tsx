@@ -1,14 +1,27 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { FileText, User, Shield, Crown, MapPin } from "lucide-react";
 import Navbar from "@/components/Navbar";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const redirectUrl = searchParams.get('redirect');
+  const documentType = searchParams.get('type');
+
+  // Fonction pour gérer la connexion du citoyen
+  const handleCitizenLogin = () => {
+    if (redirectUrl && documentType) {
+      navigate(`${redirectUrl}?type=${documentType}`);
+    } else {
+      navigate("/dashboard");
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-yellow-50 to-red-50">
       <Navbar />
@@ -58,8 +71,11 @@ const Login = () => {
                     <Label htmlFor="citizen-password">Mot de passe</Label>
                     <Input id="citizen-password" type="password" />
                   </div>
-                  <Button asChild className="w-full bg-green-600 hover:bg-green-700">
-                    <Link to="/dashboard">Se connecter</Link>
+                  <Button 
+                    onClick={handleCitizenLogin}
+                    className="w-full bg-green-600 hover:bg-green-700"
+                  >
+                    Se connecter
                   </Button>
                   <div className="text-center text-sm">
                     <Link to="/forgot-password" className="text-green-600 hover:underline">
