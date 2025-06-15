@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useDocumentTypes } from "@/hooks/useDocumentTypes";
 import DocumentTypeCard from "@/components/DocumentTypeCard";
@@ -11,8 +12,8 @@ const Services = () => {
   const navigate = useNavigate();
 
   const handleRequestDocument = (documentId: string) => {
-    // Rediriger vers la page de demande
-    navigate(`/request/new?type=${documentId}`);
+    // Rediriger vers la page de connexion pour que l'utilisateur se connecte d'abord
+    navigate(`/login`);
   };
 
   if (loading) {
